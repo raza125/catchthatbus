@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Day View Calender</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules\tether\dist\css\tether.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+    <link rel="stylesheet" href="node_modules\Material-Time-Picker\mdtimepicker.css">
+    
+    
+</head>
+<body>
+    <div id="example" class="container">
+        <ul>
+            <li class="" @mouseover="showWordIndex = index" v-bind:class="{selectedTimes: startTime.hour=== time.hour && startTime.type === time.type}" v-for="(time,index) in times" :key="index" @mouseleave="showWordIndex = null">
+                <span>{{time.hour}}:{{time.minute}} {{time.type}}</span>
+                <!-- <span class="time-type">{{time.type}}</span> -->
+                <span class="event">
+                    <span v-if="startTime.hour === time.hour && startTime.minute === time.minute && startTime.type === time.type">{{eventMessage}}</span>
+                    <i class="far fa-calendar-plus" v-if="showWordIndex === index" v-on:click="openModal(time,index)" data-toggle="modal" data-target="#myModal"></i>
+                </span>
+            </li>
+        </ul>
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modal Heading</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="startTime">From</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="endTime">To</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input type="text" placeholder="Select start time" v-model="startTimeString" id="startTime"/>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" placeholder="Select end time" id="endTime" v-model="endTime"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <input class="fullWidth" type="text" name="eventLabel" v-model="eventLabel">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-primary" v-on:click="saveTime()" data-dismiss="modal">save</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </div>
+</body>
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="node_modules\jquery\dist\jquery.min.js"></script>
+<script src="node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
+<script src="node_modules\tether\dist\js\tether.min.js"></script>
+<script src="node_modules\vue\dist\vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/moment.min.js"></script>
+<script src="node_modules\Material-Time-Picker\mdtimepicker.min.js"></script>
+<script src="./main.js"></script>
+</html>
