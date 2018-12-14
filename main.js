@@ -70,8 +70,7 @@ var vm = new Vue({
         saveTime: function() {
             if(vm.eventLabel === '')
                 vm.eventLabel = '(No title)'
-            vm.eventMessage = vm.eventLabel;
-            // 'From:'+vm.startTimeString+' To:'+vm.endTime+' Desc:'+vm.eventLabel;
+            vm.eventMessage = vm.eventLabel+'-'+vm.startTimeString+'-'+vm.endTime;
         }
     }
   });
